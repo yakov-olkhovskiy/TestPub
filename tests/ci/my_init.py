@@ -23,7 +23,7 @@ if __name__ == "__main__":
     NAME = "My Check"
     commit.create_status(
             context=NAME,
-            description="Created check",
+            description="0123456 10 123456 20 123456 30 123456 40 123456 50 123456 60 123456 70 123456 80 123456 90 12345 100 12345 110 12345 120 12345 130 12345 140 12345 150 12345 160 12345 170 12345 180 12345 190 12345 200",
             state="error",
 #            target_url=url,
         )
