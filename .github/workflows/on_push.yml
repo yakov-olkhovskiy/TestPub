@@ -9,8 +9,8 @@ on: # yamllint disable-line rule:truthy
     tags: '**'
   workflow_dispatch:
     inputs:
-      tags:
-        description: 'Test scenario tags'
+      tag:
+        description: 'Test scenario tag'
         required: true 
         type: string
 
@@ -18,7 +18,16 @@ jobs:
   Echo:
     runs-on: ubuntu-latest
     steps:
-    - name: Out GITHUB_REF
+    - name: Set test tag
+      if: github.event_name == 'workflow_dispatch'
+      run: |
+        echo "GITHUB_TAG=${{ inputs.tag }}" >> "$GITHUB_ENV"
+    - name: Get tag name
+      if: github.event_name != 'workflow_dispatch'
+      run: |
+        echo "GITHUB_TAG=${GITHUB_REF#refs/tags/}" >> "$GITHUB_ENV"
+      
+    - name: Out GITHUB_TAG
       run: |
         echo "GITHUB_REF: ${GITHUB_REF}"
-        echo "GITHUB_REF#refs/tags/: ${GITHUB_REF#refs/tags/}"
+        echo "GITHUB_TAG: ${GITHUB_TAG}"
