@@ -1,0 +1,16 @@
+name: TestOnPush
+
+env:
+  # Force the stdout and stderr streams to be unbuffered
+  PYTHONUNBUFFERED: 1
+
+on: push # yamllint disable-line rule:truthy
+
+jobs:
+  Echo:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Out GITHUB_REF
+      run: |
+        echo "GITHUB_REF: ${GITHUB_REF}"
+        echo "GITHUB_REF#refs/tags/: ${GITHUB_REF#refs/tags/}"
