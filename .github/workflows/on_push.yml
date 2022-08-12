@@ -8,6 +8,11 @@ on: # yamllint disable-line rule:truthy
   push:
     tags: '**'
   workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags'
+        required: true 
+        type: string
 
 jobs:
   Echo:
